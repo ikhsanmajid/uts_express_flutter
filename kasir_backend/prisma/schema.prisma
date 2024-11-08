@@ -13,3 +13,10 @@ model barang {
   harga     Int
   stok      Int
 }
+
+model supplier {
+  id_sup  Int    @id @default(autoincrement()) // Primary key with auto-increment
+  nama    String
+  alamat  String
+  no_hp   String
+}
