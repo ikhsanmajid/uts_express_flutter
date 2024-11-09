@@ -2,10 +2,8 @@ import { Router } from 'express';
 import * as kasirv1 from './v1/kasir';
 import { handleError } from '../middleware/handleError';
 
-const api: Router = Router();
+export const apiv1: Router = Router();
 
-api.use('/v1/kasir', kasirv1.kasir);
+apiv1.use('/kasir', kasirv1.kasir);
 
-api.use(handleError);
-
-export default api;
+apiv1.use(handleError);

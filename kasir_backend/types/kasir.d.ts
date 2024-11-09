@@ -5,7 +5,7 @@ export interface IBarang {
     stok: number;
 }
 
-interface UpdateIBarang extends IBarang {
+export interface UpdateIBarang extends IBarang {
     newnobarcode?: string;
 }
 
