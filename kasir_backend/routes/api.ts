@@ -4,7 +4,7 @@ import { handleError } from '../middleware/handleError';
 
 const api: Router = Router();
 
-api.use('/v1/kasir', kasirv1.barang);
+api.use('/v1/kasir', kasirv1.kasir);
 
 api.use(handleError);
 
