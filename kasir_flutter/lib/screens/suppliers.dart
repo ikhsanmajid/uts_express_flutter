@@ -72,7 +72,7 @@ class SuppliersKasirState extends State<SuppliersKasir> {
                       ),
                       child: Center(
                         child: ListTile(
-                          leading: const Icon(Icons.person), // Person icon here
+                          leading: const Icon(Icons.warehouse), // Person icon here
                           title: Text(snapshot.data![index].nama),
                           subtitle: Text('Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
                         ),
