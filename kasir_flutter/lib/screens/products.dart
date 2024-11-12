@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ProductsService {
   Future<List<ProductsModel>> fetchProducts() async {
     final response =
-        await http.get(Uri.parse('http://localhost:3000/api/v1/kasir/barang'));
+        await http.get(Uri.parse('http://192.168.181.95:3000/api/v1/kasir/barang'));
     if (response.statusCode == 200 || response.statusCode == 304) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       List<dynamic> dataProducts = jsonResponse['data'];
@@ -25,13 +25,19 @@ class ProductsKasir extends StatefulWidget {
 }
 
 class ProductsKasirState extends State<ProductsKasir> {
-  late Future<List<ProductsModel>> futureProduts;
+  late Future<List<ProductsModel>> futureProducts;
   final ProductsService productsService = ProductsService();
 
   @override
   void initState() {
     super.initState();
-    futureProduts = productsService.fetchProducts();
+    futureProducts = productsService.fetchProducts();
+  }
+
+  Future<void> _refreshProducts() async {
+    setState(() {
+      futureProducts = productsService.fetchProducts();
+    });
   }
 
   @override
@@ -42,8 +48,10 @@ class ProductsKasirState extends State<ProductsKasir> {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300)),
         backgroundColor: Colors.blue[300],
       ),
-      body: FutureBuilder<List<ProductsModel>>(
-        future: futureProduts,
+      body: RefreshIndicator(
+        onRefresh: _refreshProducts,
+        child: FutureBuilder<List<ProductsModel>>(
+        future: futureProducts,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -79,10 +87,11 @@ class ProductsKasirState extends State<ProductsKasir> {
                             ],
                           ),
                         ))));
-              },
-            );
-          }
-        },
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

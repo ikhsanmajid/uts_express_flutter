@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kasir_flutter/screens/products.dart';
+import 'package:kasir_flutter/screens/suppliers.dart';
 import 'widgets/navbar.dart';
 
 void main() => runApp(const KasirApp());
@@ -40,7 +41,7 @@ class _NavigationKasirState extends State<NavigationKasir> {
           }),
       body: <Widget>[
         const ProductsKasir(),
-        const Center(child: Text('Supplier')),
+        const SuppliersKasir()
       ].elementAt(_currentPageIndex),
     );
   }
