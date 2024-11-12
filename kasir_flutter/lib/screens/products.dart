@@ -25,13 +25,19 @@ class ProductsKasir extends StatefulWidget {
 }
 
 class ProductsKasirState extends State<ProductsKasir> {
-  late Future<List<ProductsModel>> futureProduts;
+  late Future<List<ProductsModel>> futureProducts;
   final ProductsService productsService = ProductsService();
 
   @override
   void initState() {
     super.initState();
-    futureProduts = productsService.fetchProducts();
+    futureProducts = productsService.fetchProducts();
+  }
+
+  Future<void> _refreshProducts() async {
+    setState(() {
+      futureProducts = productsService.fetchProducts();
+    });
   }
 
   @override
@@ -42,8 +48,10 @@ class ProductsKasirState extends State<ProductsKasir> {
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.w300)),
         backgroundColor: Colors.blue[300],
       ),
-      body: FutureBuilder<List<ProductsModel>>(
-        future: futureProduts,
+      body: RefreshIndicator(
+        onRefresh: _refreshProducts,
+        child: FutureBuilder<List<ProductsModel>>(
+        future: futureProducts,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -79,10 +87,11 @@ class ProductsKasirState extends State<ProductsKasir> {
                             ],
                           ),
                         ))));
-              },
-            );
-          }
-        },
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
