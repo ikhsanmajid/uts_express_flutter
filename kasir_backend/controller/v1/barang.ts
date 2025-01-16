@@ -8,6 +8,7 @@ import { IBarang, UpdateIBarang } from "../../types/kasir";
 export async function tambahBarang(req: Request, res: Response, next: NextFunction) {
     try {
         const data = req.body as IBarang;
+        
         const barang = await barangService.tambahBarang(data);
         
         if ('data' in barang) {

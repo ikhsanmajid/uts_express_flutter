@@ -5,12 +5,14 @@ import 'package:http/http.dart' as http;
 
 class SuppliersService {
   Future<List<SuppliersModel>> fetchSuppliers() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.181.95:3000/api/v1/kasir/supplier'));
+    final response = await http
+        .get(Uri.parse('http://192.168.218.111:3000/api/v1/kasir/supplier'));
     if (response.statusCode == 200 || response.statusCode == 304) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       List<dynamic> dataSuppliers = jsonResponse['data'];
-      return dataSuppliers.map((data) => SuppliersModel.fromJson(data)).toList();
+      return dataSuppliers
+          .map((data) => SuppliersModel.fromJson(data))
+          .toList();
     } else {
       throw Exception('Failed to load Suppliers');
     }
@@ -72,9 +74,11 @@ class SuppliersKasirState extends State<SuppliersKasir> {
                       ),
                       child: Center(
                         child: ListTile(
-                          leading: const Icon(Icons.warehouse), // Person icon here
+                          leading:
+                              const Icon(Icons.warehouse), // Person icon here
                           title: Text(snapshot.data![index].nama),
-                          subtitle: Text('Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
+                          subtitle: Text(
+                              'Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
                         ),
                       ),
                     ),
