@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as barangService from "../../model/v1/barang_model";
+import * as barangService from "../../services/v1/barang_service";
 import { IBarang, UpdateIBarang } from "../../types/kasir";
 
 

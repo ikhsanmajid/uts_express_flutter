@@ -24,3 +24,10 @@ export interface UpdateISupplier extends ISupplier {
     alamat?: string;
     no_hp?: string;
 }
+
+export interface IPenjualan {
+    id?: number;
+    nonota: number;
+    nobarcode: string;
+    jumlah: number;
+}

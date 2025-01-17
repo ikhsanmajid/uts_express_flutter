@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as supplierService from "../../model/v1/supplier_model";
+import * as supplierService from "../../services/v1/supplier_service";
 import { ISupplier, UpdateISupplier } from "../../types/kasir";
 
 
@@ -7,7 +7,14 @@ import { ISupplier, UpdateISupplier } from "../../types/kasir";
 //ANCHOR - Tambah supplier
 export async function tambahSupplier(req: Request, res: Response, next: NextFunction) {
     try {
-        const data = req.body as ISupplier;
+        const { nama, alamat, no_hp } = req.body;
+
+        const data : ISupplier = {
+            nama: String(nama) ?? "",
+            alamat: String(alamat) ?? "",
+            no_hp: String(no_hp) ?? ""
+        }
+        
         const supplier = await supplierService.tambahSupplier(data);
         
         if ('data' in supplier) {
