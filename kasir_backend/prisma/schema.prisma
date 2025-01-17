@@ -12,6 +12,8 @@ model barang {
   nama      String
   harga     Int
   stok      Int
+
+  barcodepenjualan penjualan[] @relation("noBarcodeFK") 
 }
 
 model supplier {
@@ -19,4 +21,13 @@ model supplier {
   nama    String
   alamat  String
   no_hp   String
+}
+
+model penjualan {
+  id Int @id @default(autoincrement())
+  nonota Int @unique
+  nobarcode String 
+  jumlah Int
+
+  noBarcodeFK barang @relation("noBarcodeFK", fields: [nobarcode], references: [nobarcode])
 }
