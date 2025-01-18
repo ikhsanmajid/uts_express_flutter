@@ -113,7 +113,7 @@ class _TambahSupplierState extends State<TambahSupplier> {
                   onPressed: _addSupplier,
                   icon: const Icon(Icons.add, color: Colors.white),
                   label: const Text(
-                    'Add Supplier',
+                    'Tambah Supplier',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(

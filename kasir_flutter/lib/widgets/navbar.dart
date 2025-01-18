@@ -26,6 +26,11 @@ class CustomNavigationBar extends StatelessWidget {
           icon: Icon(Icons.warehouse_outlined),
           label: 'Supplier',
           selectedIcon: Icon(Icons.warehouse),
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.receipt_long_rounded),
+          label: 'Penjualan',
+          selectedIcon: Icon(Icons.receipt_long_rounded),
         )
       ],
     );

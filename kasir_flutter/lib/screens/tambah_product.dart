@@ -145,7 +145,7 @@ class _TambahProductState extends State<TambahProduct> {
                   onPressed: _addProduct,
                   icon: const Icon(Icons.add, color: Colors.white),
                   label: const Text(
-                    'Add Product',
+                    'Tambah Barang',
                     style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
