@@ -40,46 +40,93 @@ class _TambahSupplierState extends State<TambahSupplier> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tambah Supplier'),
+        title: const Text('Tambah Supplier',
+          style: const TextStyle(fontWeight: FontWeight.w300),
+        ),
         backgroundColor: Colors.blue[300],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Text(
+                'Tambah Supplier',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Isi Formulir Dibawah Ini Untuk Menambah Supplier Baru',
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const Divider(height: 32, thickness: 1),
               TextFormField(
                 controller: _namaController,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                  prefixIcon: const Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  helperText: 'Enter the supplier\'s name.',
+                ),
                 validator: (value) =>
                     value!.isEmpty ? 'Please enter the name' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _alamatController,
-                decoration: const InputDecoration(labelText: 'Address'),
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                  prefixIcon: const Icon(Icons.location_on),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  helperText: 'Enter the supplier\'s address.',
+                ),
                 validator: (value) =>
                     value!.isEmpty ? 'Please enter the address' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _noHpController,
-                decoration: const InputDecoration(labelText: 'Phone'),
+                decoration: InputDecoration(
+                  labelText: 'Phone',
+                  prefixIcon: const Icon(Icons.phone),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  helperText: 'Enter the supplier\'s phone number.',
+                ),
+                keyboardType: TextInputType.phone,
                 validator: (value) =>
                     value!.isEmpty ? 'Please enter the phone number' : null,
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: _addSupplier,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[300],
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 12,
+              Center(
+                child: ElevatedButton.icon(
+                  onPressed: _addSupplier,
+                  icon: const Icon(Icons.add, color: Colors.white),
+                  label: const Text(
+                    'Add Supplier',
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[300],
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 12,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
-                child: const Text('Add Supplier'),
               ),
             ],
           ),
