@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class SuppliersService {
   Future<List<SuppliersModel>> fetchSuppliers() async {
     final response = await http
-        .get(Uri.parse('http://192.168.218.111:3000/api/v1/kasir/supplier'));
+        .get(Uri.parse('http://192.168.31.95:3000/api/v1/kasir/supplier'));
     if (response.statusCode == 200 || response.statusCode == 304) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       List<dynamic> dataSuppliers = jsonResponse['data'];
