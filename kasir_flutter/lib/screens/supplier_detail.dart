@@ -91,9 +91,18 @@ class SupplierDetail extends StatelessWidget {
                   ),
                 ),
                 onPressed: () async {
-                  bool confirm = await _showConfirmationDialog(context);
-                  if (confirm) {
-                    await _deleteSupplier(context, supplier.id_sup);
+                  if (supplier.id_sup != null) {
+                    bool confirm = await _showConfirmationDialog(context);
+                    if (confirm) {
+                      await _deleteSupplier(context, supplier.id_sup!);
+                    }
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                            'Cannot delete supplier: ID is missing'),
+                      ),
+                    );
                   }
                 },
                 icon: const Icon(Icons.delete, color: Colors.white),
