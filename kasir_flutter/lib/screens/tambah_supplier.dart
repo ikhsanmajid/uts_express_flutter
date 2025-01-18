@@ -68,44 +68,44 @@ class _TambahSupplierState extends State<TambahSupplier> {
               TextFormField(
                 controller: _namaController,
                 decoration: InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Nama Supplier',
                   prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  helperText: 'Enter the supplier\'s name.',
+                  helperText: 'Masukkan Nama Supplier',
                 ),
                 validator: (value) =>
-                    value!.isEmpty ? 'Please enter the name' : null,
+                    value!.isEmpty ? 'Mohon masukkan nama supplier !' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _alamatController,
                 decoration: InputDecoration(
-                  labelText: 'Address',
+                  labelText: 'Alamat',
                   prefixIcon: const Icon(Icons.location_on),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  helperText: 'Enter the supplier\'s address.',
+                  helperText: 'Masukkan Nama Supplier',
                 ),
                 validator: (value) =>
-                    value!.isEmpty ? 'Please enter the address' : null,
+                    value!.isEmpty ? 'Mohon masukkan nama supplier !' : null,
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _noHpController,
                 decoration: InputDecoration(
-                  labelText: 'Phone',
+                  labelText: 'No HP',
                   prefixIcon: const Icon(Icons.phone),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  helperText: 'Enter the supplier\'s phone number.',
+                  helperText: 'Masukkan Nomor HP Supplier',
                 ),
                 keyboardType: TextInputType.phone,
                 validator: (value) =>
-                    value!.isEmpty ? 'Please enter the phone number' : null,
+                    value!.isEmpty ? 'Mohon masukkan no hp supplier !' : null,
               ),
               const SizedBox(height: 24),
               Center(
