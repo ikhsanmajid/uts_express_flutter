@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:kasir_flutter/model/suppliers.dart';
 
 class SuppliersService {
-  final String baseUrl = 'http://192.168.181.95:3000/api/v1/kasir/supplier';
+  final String baseUrl = 'http://192.168.31.95:3000/api/v1/kasir/supplier';
 
   Future<List<SuppliersModel>> fetchSuppliers() async {
     final response = await http.get(Uri.parse(baseUrl));
