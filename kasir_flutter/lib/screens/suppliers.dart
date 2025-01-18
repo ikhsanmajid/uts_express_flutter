@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:kasir_flutter/model/suppliers.dart';
 import 'package:http/http.dart' as http;
+import 'package:kasir_flutter/screens/supplier_detail.dart';
 
 class SuppliersService {
   Future<List<SuppliersModel>> fetchSuppliers() async {
@@ -79,6 +80,14 @@ class SuppliersKasirState extends State<SuppliersKasir> {
                           title: Text(snapshot.data![index].nama),
                           subtitle: Text(
                               'Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SupplierDetail(supplier: snapshot.data![index]),
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),
