@@ -38,7 +38,7 @@ class SuppliersService {
     }
   }
 
-  Future<void> editSupplier(SuppliersModel supplier) async {
+  Future<void> updateSupplier(SuppliersModel supplier) async {
     final response = await http.put(
       Uri.parse('$baseUrl/ubah/${supplier.id_sup}'),
       headers: {'Content-Type': 'application/json'},
@@ -49,7 +49,7 @@ class SuppliersService {
       }),
     );
     if (response.statusCode != 200) {
-      throw Exception('Failed to edit supplier');
+      throw Exception('Failed to update supplier');
     }
   }
 }

@@ -64,14 +64,19 @@ class SuppliersKasirState extends State<SuppliersKasir> {
                           title: Text(snapshot.data![index].nama),
                           subtitle: Text(
                               'Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
-                          onTap: () {
-                            Navigator.push(
+                          onTap: () async {
+                            final result = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) =>
-                                    SupplierDetail(supplier: snapshot.data![index]),
+                                builder: (context) => SupplierDetail(
+                                  supplier: snapshot.data![index],
+                                ),
                               ),
                             );
+
+                            if (result == true) {
+                              _refreshSuppliers(); // Reload the suppliers list
+                            }
                           },
                         ),
                       ),
