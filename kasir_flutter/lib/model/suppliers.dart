@@ -1,11 +1,11 @@
 class SuppliersModel {
-  final int id_sup;
+  final int? id_sup;
   final String nama;
   final String alamat;
   final String no_hp;
 
   SuppliersModel({
-    required this.id_sup,
+    this.id_sup,
     required this.nama,
     required this.alamat,
     required this.no_hp,

@@ -1,22 +1,11 @@
-import 'dart:convert';
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:kasir_flutter/widgets/custom_barcode_widget.dart';
 import 'package:kasir_flutter/model/products.dart';
-import 'package:http/http.dart' as http;
-
-class ProductsService {
-  Future<List<ProductsModel>> fetchProducts() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.218.111:3000/api/v1/kasir/barang'));
-    if (response.statusCode == 200 || response.statusCode == 304) {
-      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-      List<dynamic> dataProducts = jsonResponse['data'];
-      return dataProducts.map((data) => ProductsModel.fromJson(data)).toList();
-    } else {
-      throw Exception('Failed to load products');
-    }
-  }
-}
+import 'package:kasir_flutter/services/products_service.dart';
+import 'package:kasir_flutter/screens/product_detail.dart';
+import 'package:kasir_flutter/screens/tambah_product.dart';
 
 class ProductsKasir extends StatefulWidget {
   const ProductsKasir({super.key});
@@ -86,12 +75,39 @@ class ProductsKasirState extends State<ProductsKasir> {
                                       .build()),
                             ],
                           ),
+                          onTap: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProductDetail(
+                                  product: snapshot.data![index],
+                                )
+                              )
+                            );
+                            if (result == true) {
+                              _refreshProducts(); // Reload the products list
+                            }
+                          },
                         ))));
                 },
               );
             }
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Navigate to the AddProduct page
+          bool? isAdded = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TambahProduct()),
+          );
+          if (isAdded == true) {
+            _refreshProducts(); // Reload the products list
+          }
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue[300],
       ),
     );
   }

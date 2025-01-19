@@ -1,26 +1,12 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:kasir_flutter/model/suppliers.dart';
-import 'package:http/http.dart' as http;
-
-class SuppliersService {
-  Future<List<SuppliersModel>> fetchSuppliers() async {
-    final response = await http
-        .get(Uri.parse('http://192.168.218.111:3000/api/v1/kasir/supplier'));
-    if (response.statusCode == 200 || response.statusCode == 304) {
-      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-      List<dynamic> dataSuppliers = jsonResponse['data'];
-      return dataSuppliers
-          .map((data) => SuppliersModel.fromJson(data))
-          .toList();
-    } else {
-      throw Exception('Failed to load Suppliers');
-    }
-  }
-}
+import 'package:kasir_flutter/screens/supplier_detail.dart';
+import 'package:kasir_flutter/screens/tambah_supplier.dart';
+import 'package:kasir_flutter/services/suppliers_service.dart';
 
 class SuppliersKasir extends StatefulWidget {
   const SuppliersKasir({super.key});
+
   @override
   SuppliersKasirState createState() => SuppliersKasirState();
 }
@@ -74,11 +60,24 @@ class SuppliersKasirState extends State<SuppliersKasir> {
                       ),
                       child: Center(
                         child: ListTile(
-                          leading:
-                              const Icon(Icons.warehouse), // Person icon here
+                          leading: const Icon(Icons.warehouse),
                           title: Text(snapshot.data![index].nama),
                           subtitle: Text(
                               'Alamat: ${snapshot.data![index].alamat}\nNo HP: ${snapshot.data![index].no_hp}'),
+                          onTap: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SupplierDetail(
+                                  supplier: snapshot.data![index],
+                                ),
+                              ),
+                            );
+
+                            if (result == true) {
+                              _refreshSuppliers(); // Reload the suppliers list
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -88,6 +87,21 @@ class SuppliersKasirState extends State<SuppliersKasir> {
             }
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Navigate to the TambahSupplier page
+          bool? isAdded = await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TambahSupplier()),
+          );
+          if (isAdded == true) {
+            // Refresh the suppliers list if a new supplier was added
+            _refreshSuppliers();
+          }
+        },
+        backgroundColor: Colors.blue[300],
+        child: const Icon(Icons.add),
       ),
     );
   }
