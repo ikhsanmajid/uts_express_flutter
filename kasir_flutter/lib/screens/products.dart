@@ -100,14 +100,14 @@ class ProductsKasirState extends State<ProductsKasir> {
           // Navigate to the AddProduct page
           bool? isAdded = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TambahProduct()),
+            MaterialPageRoute(builder: (context) => const TambahProduct()),
           );
           if (isAdded == true) {
             _refreshProducts(); // Reload the products list
           }
         },
-        child: const Icon(Icons.add),
         backgroundColor: Colors.blue[300],
+        child: const Icon(Icons.add),
       ),
     );
   }

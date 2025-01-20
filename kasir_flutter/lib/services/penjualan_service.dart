@@ -3,14 +3,16 @@ import 'package:http/http.dart' as http;
 import 'package:kasir_flutter/model/penjualan.dart';
 
 class PenjualanService {
-  final String baseUrl = 'http://192.168.31.95:3000/api/v1/kasir/penjualan';
+  final String baseUrl = 'http://192.168.211.138:3000/api/v1/kasir/penjualan';
 
   Future<List<PenjualanModel>> fetchPenjualan() async {
     final response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200 || response.statusCode == 304) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       List<dynamic> dataPenjualan = jsonResponse['data'];
-      return dataPenjualan.map((data) => PenjualanModel.fromJson(data)).toList();
+      return dataPenjualan
+          .map((data) => PenjualanModel.fromJson(data))
+          .toList();
     } else {
       throw Exception('Failed to load Penjualan');
     }

@@ -3,6 +3,8 @@ import 'package:kasir_flutter/model/suppliers.dart';
 import 'package:kasir_flutter/services/suppliers_service.dart';
 
 class TambahSupplier extends StatefulWidget {
+  const TambahSupplier({super.key});
+
   @override
   _TambahSupplierState createState() => _TambahSupplierState();
 }
@@ -41,7 +43,7 @@ class _TambahSupplierState extends State<TambahSupplier> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tambah Supplier',
-          style: const TextStyle(fontWeight: FontWeight.w300),
+          style: TextStyle(fontWeight: FontWeight.w300),
         ),
         backgroundColor: Colors.blue[300],
       ),

@@ -5,7 +5,7 @@ import 'package:kasir_flutter/services/products_service.dart';
 class ProductDetail extends StatefulWidget {
   final ProductsModel product;
 
-  const ProductDetail({Key? key, required this.product}) : super(key: key);
+  const ProductDetail({super.key, required this.product});
 
   @override
   _ProductDetailState createState() => _ProductDetailState();
@@ -28,12 +28,12 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   Future<void> _showEditDialog(BuildContext context) async {
-    final _barcodeController = TextEditingController(text: _product.nobarcode);
-    final _namaController = TextEditingController(text: _product.nama);
-    final _hargaController = TextEditingController(text: _product.harga.toString());
-    final _stokController = TextEditingController(text: _product.stok.toString());
+    final barcodeController = TextEditingController(text: _product.nobarcode);
+    final namaController = TextEditingController(text: _product.nama);
+    final hargaController = TextEditingController(text: _product.harga.toString());
+    final stokController = TextEditingController(text: _product.stok.toString());
 
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     await showDialog(
       context: context,
@@ -41,26 +41,26 @@ class _ProductDetailState extends State<ProductDetail> {
         return AlertDialog(
           title: const Text('Edit Product'),
           content: Form(
-            key: _formKey,
+            key: formKey,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
-                    controller: _barcodeController,
+                    controller: barcodeController,
                     decoration: const InputDecoration(labelText: 'Barcode'),
                     readOnly: true,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _namaController,
+                    controller: namaController,
                     decoration: const InputDecoration(labelText: 'Name'),
                     validator: (value) =>
                         value!.isEmpty ? 'Please enter the name' : null,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _hargaController,
+                    controller: hargaController,
                     decoration: const InputDecoration(labelText: 'Price'),
                     keyboardType: TextInputType.number,
                     validator: (value) => value!.isEmpty
@@ -71,7 +71,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _stokController,
+                    controller: stokController,
                     decoration: const InputDecoration(labelText: 'Stock'),
                     keyboardType: TextInputType.number,
                     validator: (value) => value!.isEmpty
@@ -91,12 +91,12 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             ElevatedButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   final updatedProduct = ProductsModel(
                     nobarcode: _product.nobarcode,
-                    nama: _namaController.text,
-                    harga: int.parse(_hargaController.text),
-                    stok: int.parse(_stokController.text),
+                    nama: namaController.text,
+                    harga: int.parse(hargaController.text),
+                    stok: int.parse(stokController.text),
                   );
                   try {
                     await _productsService.updateProduct(updatedProduct);

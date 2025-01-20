@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:kasir_flutter/model/products.dart';
 
 class ProductsService {
-  final String baseUrl = 'http://192.168.31.95:3000/api/v1/kasir/barang';
+  final String baseUrl = 'http://192.168.211.138:3000/api/v1/kasir/barang';
 
   // Fetch all products
   Future<List<ProductsModel>> fetchProducts() async {

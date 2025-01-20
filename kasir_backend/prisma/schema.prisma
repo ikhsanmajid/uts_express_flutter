@@ -29,5 +29,5 @@ model penjualan {
   nobarcode String 
   jumlah Int
 
-  noBarcodeFK barang @relation("noBarcodeFK", fields: [nobarcode], references: [nobarcode])
+  noBarcodeFK barang @relation("noBarcodeFK", fields: [nobarcode], references: [nobarcode], onDelete: Cascade)
 }

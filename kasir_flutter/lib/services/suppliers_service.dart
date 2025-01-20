@@ -3,14 +3,16 @@ import 'package:http/http.dart' as http;
 import 'package:kasir_flutter/model/suppliers.dart';
 
 class SuppliersService {
-  final String baseUrl = 'http://192.168.31.95:3000/api/v1/kasir/supplier';
+  final String baseUrl = 'http://192.168.211.138:3000/api/v1/kasir/supplier';
 
   Future<List<SuppliersModel>> fetchSuppliers() async {
     final response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200 || response.statusCode == 304) {
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       List<dynamic> dataSuppliers = jsonResponse['data'];
-      return dataSuppliers.map((data) => SuppliersModel.fromJson(data)).toList();
+      return dataSuppliers
+          .map((data) => SuppliersModel.fromJson(data))
+          .toList();
     } else {
       throw Exception('Failed to load Suppliers');
     }

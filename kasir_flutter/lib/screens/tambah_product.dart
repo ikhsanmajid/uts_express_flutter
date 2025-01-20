@@ -3,6 +3,8 @@ import 'package:kasir_flutter/model/products.dart';
 import 'package:kasir_flutter/services/products_service.dart';
 
 class TambahProduct extends StatefulWidget {
+  const TambahProduct({super.key});
+
   @override
   _TambahProductState createState() => _TambahProductState();
 }

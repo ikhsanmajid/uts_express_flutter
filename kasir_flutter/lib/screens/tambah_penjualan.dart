@@ -5,7 +5,7 @@ import 'package:kasir_flutter/model/products.dart';
 import 'package:kasir_flutter/model/penjualan.dart';
 
 class TambahPenjualan extends StatefulWidget {
-  const TambahPenjualan({Key? key}) : super(key: key);
+  const TambahPenjualan({super.key});
 
   @override
   State<TambahPenjualan> createState() => _TambahPenjualanState();
