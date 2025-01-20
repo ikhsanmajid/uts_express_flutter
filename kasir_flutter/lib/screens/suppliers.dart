@@ -93,7 +93,7 @@ class SuppliersKasirState extends State<SuppliersKasir> {
           // Navigate to the TambahSupplier page
           bool? isAdded = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TambahSupplier()),
+            MaterialPageRoute(builder: (context) => const TambahSupplier()),
           );
           if (isAdded == true) {
             // Refresh the suppliers list if a new supplier was added

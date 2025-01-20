@@ -5,7 +5,7 @@ import 'package:kasir_flutter/services/suppliers_service.dart';
 class SupplierDetail extends StatefulWidget {
   final SuppliersModel supplier;
 
-  const SupplierDetail({Key? key, required this.supplier}) : super(key: key);
+  const SupplierDetail({super.key, required this.supplier});
 
   @override
   _SupplierDetailState createState() => _SupplierDetailState();
@@ -28,11 +28,11 @@ class _SupplierDetailState extends State<SupplierDetail> {
   }
 
   Future<void> _showEditDialog(BuildContext context) async {
-    final _namaController = TextEditingController(text: _supplier.nama);
-    final _alamatController = TextEditingController(text: _supplier.alamat);
-    final _noHpController = TextEditingController(text: _supplier.no_hp);
+    final namaController = TextEditingController(text: _supplier.nama);
+    final alamatController = TextEditingController(text: _supplier.alamat);
+    final noHpController = TextEditingController(text: _supplier.no_hp);
 
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
 
     await showDialog(
       context: context,
@@ -40,27 +40,27 @@ class _SupplierDetailState extends State<SupplierDetail> {
         return AlertDialog(
           title: const Text('Edit Supplier'),
           content: Form(
-            key: _formKey,
+            key: formKey,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TextFormField(
-                    controller: _namaController,
+                    controller: namaController,
                     decoration: const InputDecoration(labelText: 'Name'),
                     validator: (value) =>
                         value!.isEmpty ? 'Please enter the name' : null,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _alamatController,
+                    controller: alamatController,
                     decoration: const InputDecoration(labelText: 'Address'),
                     validator: (value) =>
                         value!.isEmpty ? 'Please enter the address' : null,
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
-                    controller: _noHpController,
+                    controller: noHpController,
                     decoration: const InputDecoration(labelText: 'Phone'),
                     keyboardType: TextInputType.phone,
                     validator: (value) =>
@@ -77,12 +77,12 @@ class _SupplierDetailState extends State<SupplierDetail> {
             ),
             ElevatedButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   final updatedSupplier = SuppliersModel(
                     id_sup: _supplier.id_sup,
-                    nama: _namaController.text,
-                    alamat: _alamatController.text,
-                    no_hp: _noHpController.text,
+                    nama: namaController.text,
+                    alamat: alamatController.text,
+                    no_hp: noHpController.text,
                   );
                   try {
                     await _suppliersService.updateSupplier(updatedSupplier);

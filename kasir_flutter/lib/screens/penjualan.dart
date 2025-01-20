@@ -4,7 +4,7 @@ import 'package:kasir_flutter/screens/tambah_penjualan.dart';
 import 'package:kasir_flutter/services/penjualan_service.dart';
 
 class PenjualanKasir extends StatefulWidget {
-  const PenjualanKasir({Key? key}) : super(key: key);
+  const PenjualanKasir({super.key});
 
   @override
   _PenjualanKasirState createState() => _PenjualanKasirState();
@@ -79,7 +79,7 @@ class _PenjualanKasirState extends State<PenjualanKasir> {
           // Navigate to the TambahPenjualan page
           bool? isAdded = await Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TambahPenjualan()),
+            MaterialPageRoute(builder: (context) => const TambahPenjualan()),
           );
           if (isAdded == true) {
             // Refresh the sales list if a new sale was added
